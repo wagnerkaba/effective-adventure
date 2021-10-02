@@ -1,5 +1,7 @@
 package TestJDBC;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -17,6 +19,24 @@ public class ConnectionJDBC {
             System.out.println("Falha!");
         }
 
+    }
+
+    public static Connection getConnection(){
+
+        Connection connection = null;
+
+        try (InputStream input = ConnectionJDBC.class.getClassLoader().getResourceAsStream("connection.properties")){
+
+
+        } catch (IOException e){
+            System.out.println("Falha ao tentar carregar arquivo de propriedades");
+            e.printStackTrace();
+        }
+
+
+        return connection;
 
     }
+
+
 }
