@@ -11,8 +11,11 @@ public class Main {
         AlunoDAO alunoDAO = new AlunoDAO();
 
         List<Aluno> alunos = alunoDAO.list();
-
         alunos.stream().forEach(System.out::println);
+
+        Aluno alunoConsulta = alunoDAO.getById(3);
+        System.out.println("\nO aluno de id 3 é:" + alunoConsulta);
+
 
 
     }

@@ -20,6 +20,8 @@ public class Aluno {
         this.estado = estado;
     }
 
+    public Aluno() {    }
+
     public int getId() {
         return id;
     }
