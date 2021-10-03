@@ -69,5 +69,82 @@ public class AlunoDAO {
 
     }
 
+    public void create (Aluno aluno){
+
+        try(Connection conn = ConnectionJDBC.getConnection()){
+
+            String sql = "INSERT INTO aluno(nome, idade, estado) VALUES(?, ?, ?)";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, aluno.getNome());
+            statement.setInt(2,aluno.getIdade());
+            statement.setString(3,aluno.getEstado());
+
+            int rowsAffected = statement.executeUpdate();
+
+            System.out.println(("\nInserção bem sucedida! Foi adicionada " + rowsAffected + " linha"));
+
+
+
+
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+
+    }
+
+    public void delete(int id){
+
+        try (Connection conn = ConnectionJDBC.getConnection()){
+
+            String sql = "DELETE FROM aluno WHERE id = ?";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            int rowsAffected = statement.executeUpdate();
+
+            System.out.println("\nDelete bem sucedido! Foi deletado " + rowsAffected + " linha");
+
+
+
+
+        } catch (SQLException throwables) {
+            System.out.println("DELETE FALHOU!");
+            throwables.printStackTrace();
+        }
+
+
+    }
+
+    public void update(Aluno aluno){
+        try (Connection conn = ConnectionJDBC.getConnection()){
+
+            String sql = "UPDATE aluno SET nome = ?, idade = ?, estado = ? WHERE id =?";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, aluno.getNome());
+            statement.setInt(2, aluno.getIdade());
+            statement.setString(3, aluno.getEstado());
+            statement.setInt(4, aluno.getId());
+
+            int rowsAffected = statement.executeUpdate();
+            System.out.println("Atualização bem sucedida! Foi atualizada " +  rowsAffected + " linha");
+
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
 
 }
